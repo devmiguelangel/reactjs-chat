@@ -1,0 +1,41 @@
+1.  Introduccion a ReactJS
+ReactJS es una libreria para crear interfaces de usuario
+
+ReactJS ofrece grandes beneficios en performance, modularidad y promueve un flujo muy claro de datos y eventos, facilitando la planeación y desarrollo de apps complejas.
+
+ReactJS es una librería enfocada en la visualización. Si estamos iniciando un proyecto podemos basarnos en la arquitectura Flux, pero si ya tenemos un proyecto usando un Framework MVC como AngularJS podemos dejar AngularJS como Controlador y que ReactJS se encargue de las vistas.
+
+El secreto de ReactJS para tener un performance muy alto, es que implementa algo llamado Virtual DOM y en vez de renderizar todo el DOM en cada cambio, que es lo que normalmente se hace, este hace los cambios en una copia en memoria y después usa un algoritmo para comparar las propiedades de la copia en memoria con las de la versión del DOM y así aplicar cambios exclusivamente en las partes que varían.
+
+Los Components son el corazon de ReactJS (Tienen la funcion de los usar datos y no como lo tienen que usar)
+
+ReactJS nos ofrece un pseudolenguaje llamado JSX que facilita el desarrollo de aplicaciones web con su sintaxis para crear elementos en el DOM.
+
+No podemos usar directamente el JSX, pero tenemos dos opciones para compilarlo Usando JSXTransformer que hace la conversión directamente en el navegador del programador. Para producción se recomienda usar el precompilador basado en NodeJS que nos genera JavaScript nativo y evita que el JSX tenga que ser compilado por el usuario.
+
+- React Developer Tools Extension (Extension de Google Chrome - Habilitar [Perimitir acceso a URL de archivo])
+
+1.6.    Hello World en ReactJS
+
+
+
+1.7.    Sintaxis JSX
+1.8.    Props
+1.9.    Componiendo Componentes
+
+
+2.  Ciclo de vida de un componente, States, Props y Browserify
+2.1.    Instalacion de Browserify
+2.2.    Teoria sobre ciclos de vida en ReactJS
+2.3.    Event handling, State y Browserify
+2.4.    Integracion con Librerias de terceros
+
+3.  Realtime y rutas con ReactJS
+3.1.    Tools CSS_Reset
+3.2.    La teoria detras de una aplicacion RealTime
+3.3.    RealTime apps en ReactJS
+3.4.    Animaciones en ReactJS
+3.5.    Complementando con Socket.IO
+3.6.    Creacion de rutas con ReactRouter
+
+4.
