@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello World!</title>
+
+	<script src="https://fb.me/react-0.13.3.min.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+
+<script type="text/jsx;harmony=true">
+class HelloWorldComponent extends React.Component{
+
+	render() {
+		return (
+			<h1>Hello { this.props.name }!</h1>
+		);
+	}
+
+};
+
+React.render(<HelloWorldComponent name={ "Miguel" } />, document.getElementById('container'));
+
+setTimeout(() => {
+	React.render(<HelloWorldComponent name={ "Pepe" } />, document.getElementById('container'));
+}, 5000);
+
+/*var HelloWorldComponent = React.createClass({
+
+	render: function() {
+		return (
+			<h1>Hello { this.props.name }!</h1>
+		);
+	}
+
+});
+
+React.render(<HelloWorldComponent name={ "Miguel" } />, document.getElementById('container'));
+
+setTimeout(function () {
+	React.render(<HelloWorldComponent name={ "Pepe" } />, document.getElementById('container'));
+}, 4000);*/
+</script>
+</body>
+</html>

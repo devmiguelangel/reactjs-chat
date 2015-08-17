@@ -15,11 +15,55 @@ No podemos usar directamente el JSX, pero tenemos dos opciones para compilarlo U
 
 - React Developer Tools Extension (Extension de Google Chrome - Habilitar [Perimitir acceso a URL de archivo])
 
-1.6.    Hello World en ReactJS
+1.1.    Sintaxis JSX
+- No es recomendable renderizar en el body
+- En JSX los atributos se llaman Props
+
+- Instalacion
+<script src="https://fb.me/react-0.13.3.min.js"></script>
+<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+
+npm install -g react-tools
+	var React = require('react');
+	React.render(...);
+
+bower install --save react
+
+- /hw.html
+<script type="text/jsx">
+var HelloWorldComponent = React.createClass({
+	render: function() {
+		return (
+			<h1>Hello { this.props.name }!</h1>
+		);
+	}
+});
+React.render(<HelloWorldComponent name={ "Miguel" } />, document.getElementById('container'));
+
+setTimeout(function () {
+	React.render(<HelloWorldComponent name={ "Pepe" } />, document.getElementById('container'));
+}, 4000);
+</script>
+
+-- ES6
+<script type="text/jsx;harmony=true">
+class HelloWorldComponent extends React.Component{
+	render() {
+		return (
+			<h1>Hello { this.props.name }!</h1>
+		);
+	}
+};
+React.render(<HelloWorldComponent name={ "Miguel" } />, document.getElementById('container'));
+
+setTimeout(() => {
+	React.render(<HelloWorldComponent name={ "Pepe" } />, document.getElementById('container'));
+}, 5000);
+</script>
+
+- Herramientas para desarrolladores -> React[Tab]
 
 
-
-1.7.    Sintaxis JSX
 1.8.    Props
 1.9.    Componiendo Componentes
 
