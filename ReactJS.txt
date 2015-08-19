@@ -116,7 +116,22 @@ React.render(<PokeRow name={ pokemon.name } number={ pokemon.number } />, docume
 
 
 1.3.    Componiendo Componentes
+- /props/js/script-es6.js
+class PokeTable extends React.Component{
+	render() {
+		return (
+			<ul className={ "poke-table" }>
+			{
+				this.props.pokemons.map((pokemon) => {
+					return (<PokeRow key={ pokemon.number } name={ pokemon.name } number={ pokemon.number } />);
+				})
+			}
+			</ul>
+		);
+	}
+};
 
+React.render(<PokeTable pokemons={ pokemons } />, document.getElementById('container'));
 
 
 2.  Ciclo de vida de un componente, States, Props y Browserify
