@@ -255,6 +255,32 @@ npm run build
 
 
 2.2.    Teoria sobre ciclos de vida en ReactJS
+- defaultProps()
+- setState() -> render() [Solo cuando es necesesario]
+- setState(data, callback)
+- setInitialState()
+	- Components
+	- No pasar props a state usar constructor
+	- Usa JSON
+	- No usa Datos calculados - Otros Components - Datos duplicados de las props
+
+- Ciclo de vida de los componentes
+	- Mounting ->  se monta en el dom
+	- Updating -> se actualiza el componente
+	- Unmounting -> se quita el componente del dom
+
+	- Funciones Mounting - Unmounting
+	    - componentWillMount() -> Se ejecuta antes que se monte el dom y el componente
+	    - componentDidMount() -> Ya se monto - Nos permite integrar librerias con terceros
+	    - componentWillReceiveProps() -> Se ejecuta cuando cammbia las props no cuando se llama al render inicial
+	    - shouldComponentUpdate() -> Permite incrementar la performance de la app, permite controlar el render de los componentes
+	    - componentWillUpdate() -> Preparar algo antes de llamar al render y no al setState
+	    - componentDidUpdate() -> Operar sobre lo nuevo del dom
+	    - componentWillUnmount() -> Limpiar componentes para liberar memoria
+    
+    - Mixins
+    	- Compartir funcionalidades que tienen en comun distintos componentes, ademas reutilizar la logica de otros componentes y poder ejecutarlos de forma secuencial.
+
 2.3.    Event handling, State y Browserify
 2.4.    Integracion con Librerias de terceros
 
