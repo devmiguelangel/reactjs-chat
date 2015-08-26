@@ -9,7 +9,7 @@ class PokeAvatar extends React.Component{
 	render () {
 		var classString = 'avatar';
 		var url = `http://veekun.com/dex/media/pokemon/main-sprites/x-y/${ this.props.number }.png`;
-		console.log(url);
+		// console.log(url);
 		
 		return (
 			<img src={ url } className={ classString } />

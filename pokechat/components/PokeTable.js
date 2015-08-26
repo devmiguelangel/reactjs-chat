@@ -12,7 +12,11 @@ class PokeTable extends React.Component{
 			<ul className={ "poke-table" }>
 			{
 				this.props.pokemons.map((pokemon) => {
-					return (<PokeRow key={ pokemon.number } name={ pokemon.name } number={ pokemon.number } />);
+					return (<PokeRow 
+						key={ pokemon.number } 
+						name={ pokemon.name } 
+						number={ pokemon.number }
+						growl={ this.props.onGrowl } />);
 				})
 			}
 			</ul>
