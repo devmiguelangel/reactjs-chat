@@ -46,6 +46,10 @@ var _PokeChat = require('./PokeChat');
 
 var _PokeChat2 = _interopRequireDefault(_PokeChat);
 
+var _uid = require('uid');
+
+var _uid2 = _interopRequireDefault(_uid);
+
 var PokeApp = (function (_React$Component) {
 	_inherits(PokeApp, _React$Component);
 
@@ -61,26 +65,15 @@ var PokeApp = (function (_React$Component) {
 		key: 'onGrowl',
 		value: function onGrowl(name) {
 			var text = name + ' ' + name + '!';
-			this.state.messages.push({ text: text });
+			var message = { id: (0, _uid2['default'])(), text: text };
+			this.state.messages.push(message);
 			var messages = this.state.messages;
 			this.setState({ messages: messages });
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var pokemons = [{
-				name: "Abra",
-				number: 63
-			}, {
-				name: "Charmander",
-				number: 4
-			}, {
-				name: "Bulbasaur",
-				number: 1
-			}, {
-				name: "Gastly",
-				number: 92
-			}];
+			var pokemons = [{ name: "Abra", number: 63 }, { name: "Charmander", number: 4 }, { name: "Bulbasaur", number: 1 }, { name: "Gastly", number: 92 }];
 
 			return _react2['default'].createElement(
 				'div',
@@ -96,7 +89,7 @@ var PokeApp = (function (_React$Component) {
 
 module.exports = PokeApp;
 
-},{"./PokeChat":4,"./PokeTable":7,"react":163}],3:[function(require,module,exports){
+},{"./PokeChat":4,"./PokeTable":7,"react":163,"uid":164}],3:[function(require,module,exports){
 /*
 * Dependencies
 */
@@ -195,7 +188,7 @@ var PokeChat = (function (_React$Component) {
 				'ul',
 				{ className: "poke-chat" },
 				this.props.messages.map(function (message) {
-					return _react2['default'].createElement(_PokeMessage2['default'], { message: message });
+					return _react2['default'].createElement(_PokeMessage2['default'], { key: message.id, message: message });
 				})
 			);
 		}
@@ -209,6 +202,10 @@ PokeChat.defaultProps = { messages: [] };
 module.exports = PokeChat;
 
 },{"./PokeMessage":5,"react":163}],5:[function(require,module,exports){
+/*
+* Dependencies
+*/
+
 "use strict";
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -20202,4 +20199,23 @@ module.exports = warning;
 },{"./emptyFunction":122,"_process":8}],163:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":36}]},{},[1]);
+},{"./lib/React":36}],164:[function(require,module,exports){
+/**
+ * Export `uid`
+ */
+
+module.exports = uid;
+
+/**
+ * Create a `uid`
+ *
+ * @param {String} len
+ * @return {String} uid
+ */
+
+function uid(len) {
+  len = len || 7;
+  return Math.random().toString(35).substr(2, len);
+}
+
+},{}]},{},[1]);

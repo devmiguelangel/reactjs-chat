@@ -5,6 +5,7 @@
 import React from 'react';
 import PokeTable from './PokeTable';
 import PokeChat from './PokeChat';
+import uid from 'uid';
 
 class PokeApp extends React.Component {
 	constructor(props) {
@@ -15,29 +16,18 @@ class PokeApp extends React.Component {
 
 	onGrowl(name) {
 		let text = `${name} ${name}!`;
-		this.state.messages.push( { text: text } );
+		let message = { id: uid(), text: text };
+		this.state.messages.push(message);
 		let messages = this.state.messages;
 		this.setState({ messages: messages });
 	}
 
 	render() {
 		let pokemons = [
-			{
-				name: "Abra",
-				number: 63
-			},
-			{
-				name: "Charmander",
-				number: 4
-			},
-			{
-				name: "Bulbasaur",
-				number: 1
-			},
-			{
-				name: "Gastly",
-				number: 92
-			}
+			{ name: "Abra", number: 63 },
+			{ name: "Charmander", number: 4 },
+			{ name: "Bulbasaur", number: 1 },
+			{ name: "Gastly", number: 92 }
 		];
 		
 		return (

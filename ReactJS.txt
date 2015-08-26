@@ -282,7 +282,114 @@ npm run build
     	- Compartir funcionalidades que tienen en comun distintos componentes, ademas reutilizar la logica de otros componentes y poder ejecutarlos de forma secuencial.
 
 2.3.    Event handling, State y Browserify
+- /pokechat/components/PokeApp.js
+class PokeApp extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { messages: [] };
+		this.onGrowl = this.onGrowl.bind(this);
+	}
+
+	onGrowl(name) {
+		let text = `${name} ${name}!`;
+		let message = { text: text };
+		this.state.messages.push(message);
+		let messages = this.state.messages;
+		this.setState({ messages: messages });
+	}
+
+	render() {
+		let pokemons = [
+			{ name: "Abra", number: 63 },
+			{ name: "Charmander", number: 4 },
+			{ name: "Bulbasaur", number: 1 },
+			{ name: "Gastly", number: 92 }
+		];
+		
+		return (
+			<div>
+				<PokeTable pokemons={ pokemons } onGrowl={ this.onGrowl } />
+				<PokeChat messages={ this.state.messages } />
+			</div>
+		);
+	}
+}
+
+module.exports = PokeApp;
+
+- /pokechat/components/PokeTable.js
+render() {
+	...
+	return (<PokeRow 
+		key={ pokemon.number } 
+		name={ pokemon.name } 
+		number={ pokemon.number }
+		growl={ this.props.onGrowl } />);
+	...
+}
+
+- /pokechat/components/PokeRow.js
+class PokeRow extends React.Component{
+	onClick(e) {
+		this.props.growl.call(null, this.props.name);
+	}
+
+	render() {
+		return (
+			<li onClick={ this.onClick.bind(this) }>
+				...
+			</li>
+		);
+	}
+};
+
+- /pokechat/components/PokeChat.js
+class PokeChat extends React.Component {
+	render() {
+		return (
+			<ul className={ "poke-chat" }>
+			{
+				this.props.messages.map((message) => {
+					return <PokeMessage key={ message.id } message={ message } />
+				})
+			}
+			</ul>
+		);
+	}
+}
+
+PokeChat.defaultProps = { messages: [] };
+module.exports = PokeChat;
+
+- /pokechat/components/PokeMessage.js
+class PokeMessage extends React.Component {
+	render() {
+		return (
+			<li className={ "poke-message" }>{ this.props.message.text }</li>
+		);
+	}
+}
+
+module.exports = PokeMessage;
+
+
 2.4.    Integracion con Librerias de terceros
+npm install --save uid
+
+- /pokechat/components/PokeApp.js
+import uid from 'uid';
+
+onGrowl(name) {
+	let text = `${name} ${name}!`;
+	let message = { id: uid(), text: text };
+	this.state.messages.push(message);
+	let messages = this.state.messages;
+	this.setState({ messages: messages });
+}
+
+- /pokechat/components/PokeChat.js
+return <PokeMessage key={ message.id } message={ message } />
+
 
 3.  Realtime y rutas con ReactJS
 3.1.    Tools CSS_Reset

@@ -12,7 +12,7 @@ class PokeChat extends React.Component {
 			<ul className={ "poke-chat" }>
 			{
 				this.props.messages.map((message) => {
-					return <PokeMessage message={ message } />
+					return <PokeMessage key={ message.id } message={ message } />
 				})
 			}
 			</ul>

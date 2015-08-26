@@ -1,3 +1,7 @@
+/*
+* Dependencies
+*/
+
 import React from 'react';
 
 class PokeMessage extends React.Component {
