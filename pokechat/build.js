@@ -77,7 +77,7 @@ var PokeApp = (function (_React$Component) {
 
 			return _react2['default'].createElement(
 				'div',
-				null,
+				{ className: "poke-app" },
 				_react2['default'].createElement(_PokeTable2['default'], { pokemons: pokemons, onGrowl: this.onGrowl }),
 				_react2['default'].createElement(_PokeChat2['default'], { messages: this.state.messages })
 			);
@@ -130,7 +130,11 @@ var PokeAvatar = (function (_React$Component) {
 			var url = "http://veekun.com/dex/media/pokemon/main-sprites/x-y/" + this.props.number + ".png";
 			// console.log(url);
 
-			return _react2["default"].createElement("img", { src: url, className: classString });
+			return _react2["default"].createElement(
+				"div",
+				{ className: "avatar-container" },
+				_react2["default"].createElement("img", { src: url, className: classString })
+			);
 		}
 	}]);
 
@@ -296,7 +300,7 @@ var PokeRow = (function (_React$Component) {
 		value: function render() {
 			return _react2["default"].createElement(
 				"li",
-				{ onClick: this.onClick.bind(this) },
+				{ className: "poke-row", onClick: this.onClick.bind(this) },
 				_react2["default"].createElement(_PokeAvatar2["default"], { number: this.props.number }),
 				_react2["default"].createElement(
 					"span",

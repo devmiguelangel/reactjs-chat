@@ -31,7 +31,7 @@ class PokeApp extends React.Component {
 		];
 		
 		return (
-			<div>
+			<div className={ "poke-app" }>
 				<PokeTable pokemons={ pokemons } onGrowl={ this.onGrowl } />
 				<PokeChat messages={ this.state.messages } />
 			</div>

@@ -392,11 +392,10 @@ return <PokeMessage key={ message.id } message={ message } />
 
 
 3.  Realtime y rutas con ReactJS
-3.1.    Tools CSS_Reset
-3.2.    La teoria detras de una aplicacion RealTime
-3.3.    RealTime apps en ReactJS
-3.4.    Animaciones en ReactJS
-3.5.    Complementando con Socket.IO
-3.6.    Creacion de rutas con ReactRouter
+3.1.    La teoria detras de una aplicacion RealTime
+3.2.    RealTime apps en ReactJS
+3.3.    Animaciones en ReactJS
+3.4.    Complementando con Socket.IO
+3.5.    Creacion de rutas con ReactRouter
 
 4.

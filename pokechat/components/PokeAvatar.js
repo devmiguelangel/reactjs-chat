@@ -12,7 +12,9 @@ class PokeAvatar extends React.Component{
 		// console.log(url);
 		
 		return (
-			<img src={ url } className={ classString } />
+			<div className={ "avatar-container" }>
+				<img src={ url } className={ classString } />
+			</div>
 		);
 	}
 

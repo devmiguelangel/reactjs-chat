@@ -13,7 +13,7 @@ class PokeRow extends React.Component{
 
 	render() {
 		return (
-			<li onClick={ this.onClick.bind(this) }>
+			<li className={ "poke-row" } onClick={ this.onClick.bind(this) }>
 				<PokeAvatar number={ this.props.number } />
 				<span className={ "avatar-name" } >{ this.props.name }</span>
 			</li>
