@@ -423,8 +423,41 @@ return <PokeMessage key={ message.id } message={ message } />
 
 
 3.2.    RealTime apps en ReactJS
+npm install --save express socket.io socket.io-client babel
 
+- /pokechat/index.js
+import express from 'express';
+import http from 'http';
+import io from 'socket.io';
 
+const port = 9000;
+let app = express();
+
+app.use('/', express.static(__dirname + '/public'));
+
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html');
+});
+
+let server = http.createServer(app).listen(port, () => {
+	let host = server.address().address;
+	let port = server.address().port;
+
+	console.log(`Pokechat listening at port ${port}`);
+});
+
+- /pokechat/index.html
+<link rel="stylesheet" type="text/css" href="app.css">
+<script src="app.js"></script>
+
+- /pokechat/package.json
+"scripts": {
+  "build": "browserify app.js -t babelify --outfile public/app.js",
+  "start": "babel-node index.js"
+}
+
+npm run build
+npm start
 
 3.3.    Animaciones en ReactJS
 3.4.    Complementando con Socket.IO
