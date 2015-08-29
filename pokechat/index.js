@@ -6,7 +6,7 @@ import express from 'express';
 import http from 'http';
 import io from 'socket.io';
 
-const port = 9000;
+const port = 3000;
 let app = express();
 
 app.use('/', express.static(__dirname + '/public'));

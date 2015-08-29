@@ -88,3 +88,12 @@ table {
 .avatar-name {
 	font-weight: bold;
 }
+
+.message-animation-enter {
+	opacity: 0.01;
+	transition: opacity 1s ease-in;
+}
+
+.message-animation-enter.message-animation-enter-active {
+	opacity: 1;
+}

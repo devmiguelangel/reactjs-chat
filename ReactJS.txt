@@ -460,6 +460,33 @@ npm run build
 npm start
 
 3.3.    Animaciones en ReactJS
+- Add-ons
+- /pokechat/components/PokeChat.js
+import React from 'react/addons';
+const { CSSTransitionGroup } = React.addons;
+
+class PokeChat extends React.Component {
+	render() {
+		return (
+			<ul className={ "poke-chat" }>
+			<CSSTransitionGroup transitionName="message-animation">
+				...
+			</CSSTransitionGroup>
+			</ul>
+		);
+	}
+}
+
+- /pokechat/public/app.css
+.message-animation-enter {
+	opacity: 0.01;
+	transition: opacity 1s ease-in;
+}
+.message-animation-enter.message-animation-enter-active {
+	opacity: 1;
+}
+
+
 3.4.    Complementando con Socket.IO
 3.5.    Creacion de rutas con ReactRouter
 
