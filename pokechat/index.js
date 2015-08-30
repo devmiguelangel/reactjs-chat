@@ -12,19 +12,19 @@ let app = express();
 app.use('/', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 /*let server = app.listen(port, => {
-	let host = server.address().address;
-	let port = server.port().port;
+  let host = server.address().address;
+  let port = server.port().port;
 
-	console.log(`Pokechat listening att escuchando por el puerto ${port}`);
+  console.log(`Pokechat listening att escuchando por el puerto ${port}`);
 });*/
 
 let server = http.createServer(app).listen(port, () => {
-	let host = server.address().address;
-	let port = server.address().port;
+  let host = server.address().address;
+  let port = server.address().port;
 
-	console.log(`Pokechat listening at port ${port}`);
+  console.log(`Pokechat listening at port ${port}`);
 });

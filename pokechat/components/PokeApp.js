@@ -8,35 +8,35 @@ import PokeChat from './PokeChat';
 import uid from 'uid';
 
 class PokeApp extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { messages: [] };
-		this.onGrowl = this.onGrowl.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = { messages: [] };
+    this.onGrowl = this.onGrowl.bind(this);
+  }
 
-	onGrowl(name) {
-		let text = `${name} ${name}!`;
-		let message = { id: uid(), text: text };
-		this.state.messages.push(message);
-		let messages = this.state.messages;
-		this.setState({ messages: messages });
-	}
+  onGrowl(name) {
+    let text = `${name} ${name}!`;
+    let message = { id: uid(), text: text };
+    this.state.messages.push(message);
+    let messages = this.state.messages;
+    this.setState({ messages: messages });
+  }
 
-	render() {
-		let pokemons = [
-			{ name: "Abra", number: 63 },
-			{ name: "Charmander", number: 4 },
-			{ name: "Bulbasaur", number: 1 },
-			{ name: "Gastly", number: 92 }
-		];
-		
-		return (
-			<div className={ "poke-app" }>
-				<PokeTable pokemons={ pokemons } onGrowl={ this.onGrowl } />
-				<PokeChat messages={ this.state.messages } />
-			</div>
-		);
-	}
+  render() {
+    let pokemons = [
+      { name: "Abra", number: 63 },
+      { name: "Charmander", number: 4 },
+      { name: "Bulbasaur", number: 1 },
+      { name: "Gastly", number: 92 }
+    ];
+    
+    return (
+      <div className={ "poke-app" }>
+        <PokeTable pokemons={ pokemons } onGrowl={ this.onGrowl } />
+        <PokeChat messages={ this.state.messages } />
+      </div>
+    );
+  }
 }
 
 module.exports = PokeApp;
