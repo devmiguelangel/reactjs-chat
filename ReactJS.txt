@@ -488,6 +488,90 @@ class PokeChat extends React.Component {
 
 
 3.4.    Complementando con Socket.IO
+- Library Ajax (SuperAgent - Fetch)
+
+npm install --save jquery
+
+- /pokechat/db-api/index.js
+import pokemons from './pokemons';
+
+export default {
+  pokemons: {
+    find: function(callback) {
+      setTimeout(() => {
+        callback(pokemons)
+      }, 3000);
+    }
+  }
+}
+
+- /pokechat/index.js
+import engine from 'socket.io';
+import dbapi from './db-api';
+
+app.get('/pokemons', (req, res) => {
+  dbapi.pokemons.find((pokemons) => {
+    res.json(pokemons);
+  });
+});
+
+const io = engine.listen(server);
+
+io.on('connection', (socket) => {
+  socket.on('message', (msg) => {
+    console.log(msg);
+    io.emit('message', msg);
+  });
+});
+
+- /pokechat/components/PokeApp.js
+import $ from 'jquery';
+import io from 'socket.io-client';
+
+constructor(props) {
+  ...
+  this.user = uid(10);
+}
+
+componentWillMount() {
+  $.get('/pokemons', (res) => {
+    this.setState({ pokemons: res });
+  });
+
+  this.socket = io('http://localhost:3000');
+  this.socket.on('message', (msg) => {
+    console.log(msg);
+    if (msg.user !== this.user) {
+      this.newMessage(msg);
+    }
+  });
+}
+
+onGrowl(name) {
+  ...
+  this.socket.emit('message', message);
+}
+
+newMessage(message) {
+  this.state.messages.push(message);
+  let msg = this.state.messages;
+  this.setState({ messages: msg });
+}
+
+render() {
+  if (this.state.pokemons.length) {
+    return (
+      <div className={ "poke-app" }>
+        <PokeTable pokemons={ this.state.pokemons } onGrowl={ this.onGrowl } />
+        <PokeChat messages={ this.state.messages } />
+      </div>
+    );
+  } else {
+    return (<p>Cargando...</p>);
+  }
+}
+
+
 3.5.    Creacion de rutas con ReactRouter
 
 4.
