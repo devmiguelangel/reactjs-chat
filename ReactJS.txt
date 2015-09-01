@@ -573,5 +573,77 @@ render() {
 
 
 3.5.    Creacion de rutas con ReactRouter
+- react-router (Manejar rutas del cliente y del server)
+
+npm install --save browserify babelify react react-router
+
+- /react-router-app/index.html
+<div id="container"></div>
+<script src="bundle.js"></script>
+
+- /react-router-app/app.js
+import { default as Router, Route } from 'react-router';
+
+let RouteHandler = Router.RouteHandler;
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>App</h1>
+        <a href="#user">User</a>
+        <br/>
+        <a href="#about">About</a>
+        <RouteHandler />
+      </div>
+    );
+  }
+}
+
+class User extends React.Component {
+  render() {
+    return (
+      <p>User page</p>
+    );
+  }
+}
+
+class About extends React.Component {
+  render() {
+    return (
+      <p>About page</p>
+    );
+  }
+}
+
+let routes = (
+  <Route handler={ App }>
+    <Route path="user" handler={ User } />
+    <Route path="about" handler={ About } />
+  </Route>
+);
+
+Router.run(routes, Router.HashLocation, (Root) => {
+  React.render(<Root />, document.getElementById('container'));
+});
+
+- /react-router-app/package.json
+{
+  "name": "react-router-app",
+  "dependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
+  },
+  "scripts": {
+    "bundle": "browserify app.js -t babelify --outfile bundle.js"
+  }
+}
+
+npm run bundle
+
+- Immutable.js (Permite que las variables no se modifiquen)
+
 
 4.
