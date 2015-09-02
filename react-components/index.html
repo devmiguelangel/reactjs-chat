@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Components</title>
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  <script src="https://fb.me/react-0.13.3.min.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+<body>
+  <section id="user"></section>
+
+  <script type="text/jsx">
+    var UserComponent = React.createClass({
+      getInitialState: function () {
+        return {
+          username: "@DJmiguelarango",
+          avatar: "twitter.jpeg",
+          description: "DJ Producer/Remixer"
+        };
+      },
+      
+      changeUser: function (e) {
+        console.log(e);
+
+        this.setState({
+          username: "DJ Miguel Arango",
+          avatar: "facebook.jpg",
+          description: "DJ Producer & Remixer"
+        });
+      },
+
+      render: function() {
+        var avatar = `./images/${this.state.avatar}`;
+
+        return (
+          <article className={ "profile" } onClick={ this.changeUser }>
+            <img src={ avatar } className={ "profile-image" } />
+            <div className={ "profile-username" }>
+              { this.state.username }
+            </div>
+            <div className={ "profile-description" }>
+              { this.state.description }
+            </div>
+          </article>
+        );
+      }
+    });
+    
+    React.render( <UserComponent />, document.getElementById('user') );
+  </script>
+</body>
+</html>

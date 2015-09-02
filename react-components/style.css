@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #006fc4;
+}
+
+.profile {
+    width: 350px;
+    height: 150px;
+    margin: 100px auto;
+    border: 3px solid #000;
+    border-radius: 5px;
+    background: #FFF;
+}
+
+.profile-image {
+    float: left;
+    height: 120px;
+    margin: 15px;
+}
+
+.profile-username, .profile-description {
+    font-weight: bold;
+    margin: 15px;
+    text-align: center;
+}
