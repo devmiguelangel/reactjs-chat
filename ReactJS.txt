@@ -646,4 +646,107 @@ npm run bundle
 - Immutable.js (Permite que las variables no se modifiquen)
 
 
-4.
+4.	Flux (Patron de Arquitectura para las Apps)
+- Flux es la arquitectura de aplicaciones que Facebook utiliza para crear aplicaciones web del lado del cliente. Este es un complemento de ReactJS para componentes de vista componibles mediante la utilización de un flujo de datos unidireccional. Es más bien un patrón en lugar de un marco formal, y se puede empezar a utilizar Flux inmediatamente sin una gran cantidad de código nuevo.
+
+npm install --save react reflux jquery browserify babelify
+
+- /flux-app/index.html
+<div id="container"></div>
+<script src="bundle.js"></script>
+
+- /flux-app/actions/ImageActions.js
+import Reflux from 'reflux';
+
+let ImageActions = Reflux.createActions([
+  'fetchList'
+]);
+
+module.exports = ImageActions;
+
+- /flux-app/stores/ImageStore.js
+import Reflux from 'reflux';
+import $ from 'jquery';
+import ImageActions from '../actions/ImageActions';
+
+let ImageStore = Reflux.createStore({
+  url: 'https://api.flickr.com/services/feeds/photos_public.gne?format=json',
+  listenables: [ ImageActions ],
+  imageList: [],
+  init: function () {
+    this.fetchList();
+  },
+  fetchList: function () {
+    let tags = [ 'animals', 'nature', 'food', 'travel', 'cars', 'sport', ];
+    let randomTag = Math.floor(Math.random() * tags.length);
+
+    $.ajax({
+      url: this.url + `&tags=${randomTag}`,
+      dataType: 'jsonp',
+      jsonpCallback: 'jsonFlickrFeed',
+      cache: false,
+      context: this,
+      success: function (data) {
+        console.log(data);
+        this.imageList = data.items;
+        this.trigger(this.imageList);
+      }
+    });
+  }
+});
+
+module.exports = ImageStore;
+
+- /flux-app/components/ImageGrid.js
+import React from 'react';
+import Reflux from 'reflux';
+import ImageStore from '../stores/ImageStore';
+
+let ImageGrid = React.createClass({
+  mixins: [Reflux.connect(ImageStore, 'imagestore')],
+  render: function() {
+    if (this.state.imagestore) {
+      return (
+        <div>
+        {
+          this.state.imagestore.map((image) => {
+            return (
+              <div className={ "image" }>
+                <a href={ image.link }>
+                  <img src={ image.media.m } />
+                </a>
+              </div>
+            )
+          })
+        }
+        </div>
+      );
+    } else{
+      return (<p>No hay imagenes disponibles</p>);
+    }
+  }
+});
+
+module.exports = ImageGrid;
+
+- /flux-app/app.js
+import React from 'react';
+import ImageActions from './actions/ImageActions';
+import ImageGrid from './components/ImageGrid';
+
+setInterval(() => {
+  ImageActions.fetchList();
+}, 5000);
+
+React.render(
+  <ImageGrid />,
+  document.getElementById('container')
+);
+
+- /flux-app/package.json
+"scripts": {
+  "bundle": "browserify app.js -t babelify --outfile bundle.js"
+}
+
+
+5.
